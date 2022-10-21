@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">TokoN</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="feed">Feed</string>
+    <string name="shoping_cart">Shoping Cart</string>
+    <string name="whistlist">WhistList</string>
+    <string name="profile">Profile</string>
+    <string name="camera">Camera</string>
+    <string name="upoad_from_gallery">Upload From Gallery</string>
+    <string name="cancel">cancel</string>
+    <string name="save_image">save image</string>
+    <string name="atau_login_dengan_cara_lain">atau login dengan cara lain</string>
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/yodha/.gradle/caches/transforms-3/2124a7f8102f306dbf73be8c9c00b158/transformed/facebook-share-4.42.0/res/drawable/com_facebook_button_send_background.xml" value="0.1815" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/button_bg.xml" value="0.1225" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.1815" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/ic_coin.xml" value="0.151" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/ic_colortoko.xml" value="0.1815" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/ic_cosmetic.xml" value="0.152" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/ic_facebook.xml" value="0.2535" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/ic_game.xml" value="0.151" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/ic_google.xml" value="0.1" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/ic_laptop.xml" value="0.151" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/ic_list.xml" value="0.151" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/ic_menu.xml" value="0.1815" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/ic_plus.xml" value="0.1815" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/ic_pojokkananbawah.xml" value="0.2535" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/ic_t_shirt.xml" value="0.151" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/ic_upload.xml" value="0.1575" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/stroke.xml" value="0.151" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/drawable/upload.xml" value="0.1575" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/activity_detail.xml" value="0.20478837109876016" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/activity_home.xml" value="0.264" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/activity_items.xml" value="0.20478837109876016" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/activity_login.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/activity_login2.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/adapter_item_shope.xml" value="0.20436083796494228" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/adapter_itemshope.xml" value="0.264" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/fragment_detail.xml" value="0.20478837109876016" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/fragment_feed.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/fragment_login.xml" value="0.264" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/fragment_profile.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/fragment_registers.xml" value="0.264" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/fragment_registrasi.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/fragment_sell.xml" value="0.264" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/fragment_shope.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/fragment_toko.xml" value="0.2" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/fragment_whist.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/layout/provider_paths.xml" value="0.19966230476994512" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/menu/img_profile.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/menu/menu_home.xml" value="0.20436083796494228" />
+        <entry key="..\:/Users/yodha/AndroidStudioProjects/TokoN/app/src/main/res/menu/menu_nav.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

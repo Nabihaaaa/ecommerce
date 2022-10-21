@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "731308851703",
+    "firebase_url": "https://fir-tokon-default-rtdb.firebaseio.com",
+    "project_id": "fir-tokon",
+    "storage_bucket": "fir-tokon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731308851703:android:0802f64bdb933a261a2ef2",
+        "android_client_info": {
+          "package_name": "com.example.tokon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731308851703-cq9migrbjidh2duauq16qb2i3srfqkv5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA07PDMBLJ2RuLVnjFoQkDSf5s2DTfDsqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731308851703-cq9migrbjidh2duauq16qb2i3srfqkv5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
