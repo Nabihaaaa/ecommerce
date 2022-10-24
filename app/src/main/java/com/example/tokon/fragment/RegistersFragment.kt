@@ -19,13 +19,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.tokon.R
 import com.example.tokon.database.User
 import com.example.tokon.databinding.FragmentRegistersBinding
+import com.example.tokon.util.UtilFirestore
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import jp.wasabeef.glide.transformations.BlurTransformation
 
@@ -58,7 +55,7 @@ class RegistersFragment : Fragment() {
             .apply(RequestOptions.bitmapTransform(BlurTransformation(15, 1)))
             .into(binding.pojokBawah)
 
-       Glide.with(this).load(R.drawable.ic_pojokatas)
+        Glide.with(this).load(R.drawable.ic_pojokatas)
             .apply(RequestOptions.bitmapTransform(BlurTransformation(15, 1)))
             .into(binding.pojokAtasKiri)
     }
@@ -95,7 +92,8 @@ class RegistersFragment : Fragment() {
             if (name.isNotEmpty() && email.isNotEmpty() && username.isNotEmpty() && password.isNotEmpty()) {
 
                 dataUser = User(email, name, username, password, 0, 0)
-                db.document("users/$email").set(dataUser)
+
+                UtilFirestore().addData(requireContext(), "users", email, dataUser)
 
                 RegisterFirebase(email, password)
 
@@ -129,7 +127,6 @@ class RegistersFragment : Fragment() {
                     ).show()
                 }
             }
-
     }
 
     fun TextView.makeLinks(vararg links: Pair<String, View.OnClickListener>) {

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/deskripsi_text"
+            tools:src = "@drawable/scarlett"
+
+            />
+        <TextView
+            android:id="@+id/judul_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Serum Scarlett"
+            android:textSize="26sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/deskripsi_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            tools:text="dapat menghilangkan jerawat serta membuat kulit wajah terihat lembab"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/judul_text"/>
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="IDR 50000"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/deskripsi_text"
+            app:layout_constraintTop_toBottomOf="@id/deskripsi_text"/>
+
+        <TextView
+            android:id="@+id/toko_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            tools:text='Kecantikan'
+            android:drawablePadding="10dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintWidth_percent="0.29"
+            app:layout_constraintTop_toTopOf="@id/price"
+            app:layout_constraintBottom_toBottomOf="@id/price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:drawableStartCompat="@drawable/ic_toko" />
+
+        <TextView
+            android:id="@+id/category_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            tools:text='cosmetic'
+            android:drawablePadding="10dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="5dp"
+            android:visibility="invisible"
+            app:layout_constraintWidth_percent="0.29"
+            app:layout_constraintTop_toTopOf="@id/price"
+            app:layout_constraintBottom_toBottomOf="@id/price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:drawableStartCompat="@drawable/ic_toko" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_toko"
+    app:startDestination="@id/tokoFragment">
+
+    <fragment
+        android:id="@+id/tokoFragment"
+        android:name="com.example.tokon.fragment.TokoFragment"
+        android:label="fragment_toko"
+        tools:layout="@layout/fragment_toko" >
+        <action
+            android:id="@+id/action_tokoFragment_to_sellFragment"
+            app:destination="@id/sellFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sellFragment"
+        android:name="com.example.tokon.fragment.SellFragment"
+        android:label="fragment_sell"
+        tools:layout="@layout/fragment_sell" />
+</navigation>

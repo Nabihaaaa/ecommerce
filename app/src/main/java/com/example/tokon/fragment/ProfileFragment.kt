@@ -36,7 +36,6 @@ class ProfileFragment : Fragment() {
     private lateinit var storageReference: StorageReference
     private lateinit var progressDialog: ProgressDialog
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,7 +49,6 @@ class ProfileFragment : Fragment() {
         setupBinding()
         setupListener()
     }
-
 
     private fun setupListener() {
         val popupMenu = PopupMenu(requireActivity(), binding.camera)

@@ -5,56 +5,70 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.tokon.R
+import com.example.tokon.adapter.ItemshopeAdapter
+import com.example.tokon.adapter.ItemtokoAdapter
+import com.example.tokon.database.ShopeItem
+import com.example.tokon.databinding.FragmentTokoBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [TokoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TokoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentTokoBinding
+    private lateinit var itemArrayList: ArrayList<ShopeItem>
+    private lateinit var dbref: DatabaseReference
+    private lateinit var itemRecyclerView: RecyclerView
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_toko, container, false)
+        binding = FragmentTokoBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TokoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TokoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        auth = FirebaseAuth.getInstance()
+        SetupData()
+        SetupListener()
+    }
+
+    private fun SetupData() {
+        itemArrayList = arrayListOf()
+        itemRecyclerView = binding.itemJualan
+        var useremail = auth.currentUser?.email.toString()
+        useremail = useremail.replace(".", "")
+        dbref = FirebaseDatabase.getInstance().getReference("Toko/$useremail")
+        dbref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (itemSnapshot in snapshot.children) {
+                        val item = itemSnapshot.getValue(ShopeItem::class.java)
+                        itemArrayList.add(item!!)
+                    }
+                    itemRecyclerView.adapter = ItemtokoAdapter(itemArrayList)
                 }
             }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
+
+    private fun SetupListener() {
+        binding.buttonTambah.setOnClickListener {
+            findNavController().navigate(R.id.action_tokoFragment_to_sellFragment)
+        }
+    }
+
+
 }

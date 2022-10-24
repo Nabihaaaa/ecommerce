@@ -29,7 +29,7 @@
         app:layout_constraintTop_toBottomOf="@id/daftar_text"
         app:layout_constraintStart_toStartOf="parent"/>
     <EditText
-        android:id="@+id/email_etext"
+        android:id="@+id/namaToko_etext"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="14sp"
@@ -150,6 +150,7 @@
         app:layout_constraintTop_toBottomOf="@id/gambar" />
 
     <TextView
+        android:id="@+id/upload_img_file"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Chose a file"
@@ -163,6 +164,14 @@
         app:layout_constraintStart_toEndOf="@id/camera"
         app:layout_constraintTop_toTopOf="@id/camera"
         app:layout_constraintBottom_toBottomOf="@id/camera"/>
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="save"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@id/camera"
+        app:layout_constraintTop_toBottomOf="@id/camera"/>
 
 
 

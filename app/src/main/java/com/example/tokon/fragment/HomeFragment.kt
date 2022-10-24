@@ -1,31 +1,22 @@
 package com.example.tokon.fragment
 
-import android.content.ClipData
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.Visibility
 import com.example.tokon.R
-import com.example.tokon.activity.DetailActivity
 import com.example.tokon.activity.LoginActivity
 import com.example.tokon.activity.TokoActivity
 import com.example.tokon.adapter.ItemshopeAdapter
 import com.example.tokon.database.ShopeItem
-import com.example.tokon.database.User
-import com.example.tokon.databinding.AdapterItemshopeBinding
 import com.example.tokon.databinding.FragmentHomeBinding
+import com.example.tokon.util.UtilFirestore
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -51,7 +42,15 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         auth = Firebase.auth
+        db = FirebaseFirestore.getInstance()
+        itemRecyclerView = binding.itemShope
+        itemArrayList = arrayListOf()
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setupList()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,55 +61,61 @@ class HomeFragment : Fragment() {
 
     private fun setupMoney() {
         val useremail = auth.currentUser?.email
-        db = FirebaseFirestore.getInstance()
-        userRef = db.document("users/${useremail}")
-        userRef
-            .addSnapshotListener { snapshot, e ->
-                if (e != null) {
-                    Toast.makeText(requireActivity(), "Error", Toast.LENGTH_SHORT).show()
-                }
-                if (snapshot != null && snapshot.exists()) {
-                    val money = snapshot.getLong("money")
-                    val coin = snapshot.getLong("coin")
-                    binding.textmoney.text = money.toString()
-                    binding.coin.text = coin.toString()
-                } else {
-                    binding.textmoney.text = "0"
-                    binding.coin.text = "0"
+        db.collection("users").document(useremail.toString())
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    binding.textmoney.text = document.getLong("money").toString()
+                    binding.coin.text = document.getLong("coin").toString()
                 }
             }
-    }
+            .addOnFailureListener { exception ->
+                Toast.makeText(
+                    context, "Failed Load Data",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
 
-    override fun onStart() {
-        super.onStart()
-        setupList()
     }
 
     private fun setupList() {
-        itemRecyclerView = binding.itemShope
-        itemArrayList = arrayListOf()
-        getItemData()
-        //EventhangeListener()
+        itemRecyclerView.adapter = ItemshopeAdapter(itemArrayList)
+        db.collection("Items")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result.documents) {
+                    val item = document.toObject(ShopeItem::class.java)
+                    itemArrayList.add(item!!)
+                }
+                itemRecyclerView.adapter = ItemshopeAdapter(itemArrayList)
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(
+                    context, "Failed Load Data",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
     }
 
-    private fun getItemData() {
-        dbref = FirebaseDatabase.getInstance().getReference("Item")
-        dbref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (itemSnapshot in snapshot.children) {
-                        val item = itemSnapshot.getValue(ShopeItem::class.java)
-                        itemArrayList.add(item!!)
+    private fun getItemData(category: String) {
+        itemArrayList.clear()
+        db.collection("Items")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result.documents) {
+                    val item = document.toObject(ShopeItem::class.java)
+                    if (item?.category == category) {
+                        itemArrayList.add(item)
                     }
-                    itemRecyclerView.adapter = ItemshopeAdapter(itemArrayList)
                 }
+                itemRecyclerView.adapter = ItemshopeAdapter(itemArrayList)
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+            .addOnFailureListener { exception ->
+                Toast.makeText(
+                    context, "Failed Load Data",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-
-        })
     }
 
     private fun setupListener() {
@@ -125,7 +130,7 @@ class HomeFragment : Fragment() {
                             true
                         }
                         R.id.buka_toko -> {
-                            startActivity(Intent(requireActivity(),TokoActivity::class.java))
+                            startActivity(Intent(requireActivity(), TokoActivity::class.java))
                             true
                         }
                         else -> false
@@ -141,7 +146,7 @@ class HomeFragment : Fragment() {
             binding.rectangle3.setCardBackgroundColor(Color.WHITE)
             binding.rectangle4.setCardBackgroundColor(Color.WHITE)
             category = "cosmetics"
-            setItem(category)
+            getItemData(category)
         }
         binding.rectangle2.setOnClickListener {
             binding.rectangle2.setCardBackgroundColor(Color.parseColor("#F6DDCC"))
@@ -149,7 +154,7 @@ class HomeFragment : Fragment() {
             binding.rectangle3.setCardBackgroundColor(Color.WHITE)
             binding.rectangle4.setCardBackgroundColor(Color.WHITE)
             category = "electronics"
-            setItem(category)
+            getItemData(category)
         }
         binding.rectangle3.setOnClickListener {
             binding.rectangle3.setCardBackgroundColor(Color.parseColor("#F6DDCC"))
@@ -157,7 +162,7 @@ class HomeFragment : Fragment() {
             binding.rectangle2.setCardBackgroundColor(Color.WHITE)
             binding.rectangle4.setCardBackgroundColor(Color.WHITE)
             category = "games"
-            setItem(category)
+            getItemData(category)
         }
         binding.rectangle4.setOnClickListener {
             binding.rectangle4.setCardBackgroundColor(Color.parseColor("#F6DDCC"))
@@ -165,33 +170,8 @@ class HomeFragment : Fragment() {
             binding.rectangle2.setCardBackgroundColor(Color.WHITE)
             binding.rectangle3.setCardBackgroundColor(Color.WHITE)
             category = "clothes"
-            setItem(category)
+            getItemData(category)
         }
-
-    }
-
-    private fun setItem(category: String) {
-        itemArrayList.clear()
-        dbref = FirebaseDatabase.getInstance().getReference("Item")
-        dbref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (itemSnapshot in snapshot.children) {
-                        val item = itemSnapshot.getValue(ShopeItem::class.java)
-                        if (item != null) {
-                            if (item.category == category)
-                                itemArrayList.add(item)
-                        }
-                    }
-                    itemRecyclerView.adapter = ItemshopeAdapter(itemArrayList)
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
     }
 }
 

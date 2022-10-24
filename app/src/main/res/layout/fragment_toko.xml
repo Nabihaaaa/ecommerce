@@ -38,7 +38,11 @@
                 android:id="@+id/item_jualan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
+                tools:listitem="@layout/adapter_itemshope"
+                tools:itemCount="5"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@+id/card_nama_toko"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

@@ -3,25 +3,21 @@ package com.example.tokon.adapter
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tokon.database.ShopeItem
-import com.example.tokon.databinding.AdapterItemshopeBinding
+import com.example.tokon.databinding.AdapterTokoitemBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.squareup.picasso.Picasso
 import java.io.File
 
-
-class ItemshopeAdapter(
+class ItemtokoAdapter(
     private var items: ArrayList<ShopeItem>,
-) : RecyclerView.Adapter<ItemshopeAdapter.ViewHolder>() {
-    class ViewHolder(val binding: AdapterItemshopeBinding) : RecyclerView.ViewHolder(binding.root)
+) : RecyclerView.Adapter<ItemtokoAdapter.ViewHolder>() {
+    class ViewHolder(val binding: AdapterTokoitemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        AdapterItemshopeBinding.inflate(
+        AdapterTokoitemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -36,14 +32,15 @@ class ItemshopeAdapter(
         holder.binding.price.text = "IDR ${item.harga.toString()}"
         holder.binding.categoryText.text = item.category
 
+        val auth = FirebaseAuth.getInstance()
+        val useremail = auth.currentUser?.email.toString()
         val storageReference = FirebaseStorage.getInstance().reference
-        val loc = storageReference.child("keyboard.jfif")
+        val loc = storageReference.child("Toko/$useremail/${item.id}")
         val localfile = File.createTempFile("tempImage", "jpeg")
         loc.getFile(localfile).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
             holder.binding.image.setImageBitmap(bitmap)
         }
-
 
         /*holder.itemView.setOnClickListener{
              listener.onDetail(item)
@@ -54,18 +51,9 @@ class ItemshopeAdapter(
         }*/
     }
 
+
     override fun getItemCount() = items.size
 
-    /*fun  addList(list: List<ShopeItem>){
-        items.clear()
-        items.addAll(list)
-        notifyDataSetChanged()
-    }*/
 
-    /* interface AdapterListener{
-         //fun onUpdate(taskModel: ShopeItem)
-         fun onDetail(itemModel: ShopeItem)
-     }*/
 }
-
 
